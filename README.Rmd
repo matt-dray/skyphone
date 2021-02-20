@@ -1,0 +1,74 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# {skyphone}
+
+<!-- badges: start -->
+[![Project Status: Concept – Minimal or no implementation has been done
+yet, or the repository is only intended to be a limited example, demo,
+or
+proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+<!-- badges: end -->
+
+The goal of {skyphone} is to create an audio version of [GitHub Skyline](https://skyline.github.com/) in R.
+
+Skyline is a novelty vanity webservice from GitHub. You input a username and can 'view a 3D model of your GitHub contribution graph.' {skyphone} fetches this data and puts it in a nice, tidy table that you can sonify or plot.
+
+Very much in development.
+
+## Installation
+
+You can install the development version of {skyphone} using {remotes}.
+
+```{r, install, eval=FALSE}
+# install.packages("remotes")
+remotes::install_github("skyphone")
+```
+
+## Examples
+
+I'll read in my own 2020 GitHub contributions from the Skyline API.
+
+```{r example-fetch}
+library(skyphone)
+md <- sky_get("matt-dray", 2020)
+md
+```
+
+You can make an audio version via the {sonify} package.
+
+```{r example-sonify}
+sky_sonify(md, play = FALSE, out_dir = NULL)
+```
+
+You can hear the output if you set `play = TRUE` and/or save the audio file as a .wav to the folder provided by `out_dir`. 
+
+There's also a simple, opinionated built-in plotting function.
+
+```{r example-plot}
+sky_plot(md)
+```
+
+## Thanks
+
+To GitHub, obviously. To [Matt Kerlogue](https://www.github.com/mattkerlogue) for the nerdsnipe. To Den Delimarsky for [writing about the Skyline API](https://den.dev/blog/get-github-contributions-api/).
+
+## GitHub terms
+
+You can read GitHub's [terms](https://docs.github.com/en/github/site-policy/github-terms-of-service), [privacy](https://docs.github.com/en/github/site-policy/github-privacy-statement) for their service.
+
+## Code of Conduct
+
+Please note that the skyphone project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
