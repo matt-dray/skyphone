@@ -28,10 +28,10 @@ Very much in development.
 
 ## Installation
 
-You can install {skyphone} package from GitHub.
+You can install the {skyphone} package from GitHub:
 
 ``` r
-remotes::install_github("skyphone")
+remotes::install_github("matt-dray/skyphone")
 ```
 
 This assumes you’ve already installed {remotes} from CRAN with
