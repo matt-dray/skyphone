@@ -13,6 +13,8 @@
 #'     count. Row count will be 365 or 366 if a leap year.
 #' @export
 #'
+#' @importFrom rlang .data
+#'
 #' @examples \dontrun{ sky_get(user = "matt-dray", year = 2020) }
 sky_get <- function(user, year = 2020) {
 
@@ -39,13 +41,15 @@ sky_get <- function(user, year = 2020) {
 #' Present GitHub Skyline contributions data in audio format using the {sonify}
 #' package.
 #'
-#' @param data A data.frame/tibble. An object output from sky_get() containing
-#'     the GitHub Skyline data for a given user in a given year.
+#' @param data A data.frame/tibble. An object output from \code{\link{sky_get}}
+#'     containing the GitHub contributions data for a given user in a given
+#'     year.
 #' @param play Logical. Should the audio be played? Defaults to TRUE
 #' @param out_dir Character. The folder to which the audio file will be saved.
 #'     Defaults to NULL (no file is saved).
 #'
 #' @return A WaveMC-class object, plus optional audio output and a .wav file.
+#'
 #' @export
 #'
 #' @examples \dontrun{
@@ -76,11 +80,15 @@ sky_sonify <- function(data, play = TRUE, out_dir = NULL) {
 #' Produce a simple, opinionated plot of GitHub Skyline data showing
 #' contribution count over time for a given year.
 #'
-#' @param data A data.frame/tibble. An object output from sky_get() containing
-#'     the GitHub Skyline data for a given user in a given year.
+#' @param data A data.frame/tibble. An object output from \code{\link{sky_get}}
+#'     containing the GitHub contributions data for a given user in a given
+#'     year.
 #'
-#' @return A gg/ggplot-class object
+#' @return A gg/ggplot-class object.
+#'
 #' @export
+#'
+#' @importFrom rlang .data
 #'
 #' @examples \dontrun{
 #'     d <- sky_get(user = "matt-dray", year = 2020)
@@ -89,16 +97,17 @@ sky_sonify <- function(data, play = TRUE, out_dir = NULL) {
 sky_plot <- function(data) {
 
   ggplot2::ggplot() +
-    ggplot2::geom_path(
+    ggplot2::geom_col(
       ggplot2::aes(data[["date"]], data[["count"]])
     ) +
     ggplot2::labs(
       title = paste0(
+        "The 2D Github Skyline of ",
         unique(data[["user"]]),
-        "'s GitHub contributions in ",
+        " in ",
         unique(data[["year"]])
       ),
-      caption = "Data: https://skyline.github.com/",
+      subtitle = "Data via skyline.github.com/",
       x = "Date", y = "Count"
     ) +
     ggplot2::theme_minimal()

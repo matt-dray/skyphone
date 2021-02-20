@@ -11,28 +11,35 @@ or
 proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 <!-- badges: end -->
 
-The goal of {skyphone} is to create an audio version of [GitHub
+The goal of {skyphone} is to create an audio version of a [GitHub
 Skyline](https://skyline.github.com/) in R.
 
-Skyline is a novelty vanity webservice from GitHub. You input a username
-and can ‘view a 3D model of your GitHub contribution graph.’ {skyphone}
-fetches this data and puts it in a nice, tidy table that you can sonify
-or plot.
+Skyline is a novelty webservice from GitHub. You input a username and
+can ‘view a 3D model of your GitHub contribution graph.’ It looks a bit
+like a city skyline, hence the name.
+
+{skyphone} fetches the contributions data from the Skyline API and puts
+it in a nice, tidy table that you can sonify (i.e. convert to an audio
+signal) or plot.
 
 Very much in development.
 
 ## Installation
 
-You can install the development version of {skyphone} using {remotes}.
+You can install {skyphone} package from GitHub.
 
 ``` r
-# install.packages("remotes")
 remotes::install_github("skyphone")
 ```
 
+This assumes you’ve already installed {remotes} from CRAN with
+`install.packages("remotes")`
+
 ## Examples
 
-I’ll read in my own 2020 GitHub contributions from the Skyline API.
+The `sky_get()` function fetches from the Skyline API a named user’s
+(open) contributions for a given year. Here’s what it looks like to
+fetch my own contributions for 2020:
 
 ``` r
 library(skyphone)
@@ -54,7 +61,9 @@ md
 #> # … with 356 more rows
 ```
 
-You can make an audio version via the {sonify} package.
+You can hear contributions over time by passing the output from
+`sky_get()` to `sky_sonify()`. This function uses the {sonify} package
+to convert the data to audio format, where peaks are higher pitched.
 
 ``` r
 sky_sonify(md, play = FALSE, out_dir = NULL)
@@ -68,24 +77,33 @@ sky_sonify(md, play = FALSE, out_dir = NULL)
 #>  Bit (8/16/24/32/64):    16
 ```
 
-You can hear the output if you set `play = TRUE` and/or save the audio
-file as a .wav to the folder provided by `out_dir`.
+You’ll hear the output from your speakers if you set `play = TRUE`
+and/or save the audio file as a .wav to the folder provided by
+`out_dir`.
 
-Here’s what the audio output sounds like:
+[🔈 Click here to listen to the sonified output from this
+example.](https://www.rostrum.blog/output/skyphone/skyphone_matt-dray_2020.wav)
 
-<html>
-<audio controls>
-<source src="https://www.rostrum.blog/output/skyphone/skyphone_matt-dray_2020.wav" type="audio/wav">
-</audio>
-</html>
-
-There’s also a simple, opinionated built-in plotting function.
+I’ve also included a simple, opinionated plotting function called
+`sky_plot`, which gives you a 2D representation of your ‘skyline’.
 
 ``` r
-sky_plot(md)
+p <- sky_plot(md)
+p
 ```
 
-![](man/figures/README-example-plot-1.png)<!-- -->
+<img src="man/figures/README-example-plot-1.png" title="A bar chart of contributions to GitHub in 2020 by user matt-dray, which peaks in the summer months." alt="A bar chart of contributions to GitHub in 2020 by user matt-dray, which peaks in the summer months."  />
+
+There’s no reason why you couldn’t mimic the vaporwave aesthetic of
+GitHub Skyline website using [the {vapoRwave}
+package](https://github.com/moldach/vapoRwave)…
+
+``` r
+library(vapoRwave)  # install from GitHub
+p + new_retro()
+```
+
+<img src="man/figures/README-example-plot-vaporwave-1.png" title="A bar chart of contributions to GitHub in 2020 by user matt-dray, using a 'vaporwave' aesthetic for its colours and fonts." alt="A bar chart of contributions to GitHub in 2020 by user matt-dray, using a 'vaporwave' aesthetic for its colours and fonts."  />
 
 ## Thanks
 
@@ -97,13 +115,14 @@ API](https://den.dev/blog/get-github-contributions-api/).
 ## GitHub terms
 
 You can read GitHub’s
-[terms](https://docs.github.com/en/github/site-policy/github-terms-of-service),
-[privacy](https://docs.github.com/en/github/site-policy/github-privacy-statement)
+[terms](https://docs.github.com/en/github/site-policy/github-terms-of-service)
+and [privacy
+statement](https://docs.github.com/en/github/site-policy/github-privacy-statement)
 for their service.
 
 ## Code of Conduct
 
-Please note that the skyphone project is released with a [Contributor
+Please note that the {skyphone} project is released with a [Contributor
 Code of
 Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.

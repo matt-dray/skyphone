@@ -7,8 +7,9 @@
 sky_sonify(data, play = TRUE, out_dir = NULL)
 }
 \arguments{
-\item{data}{A data.frame/tibble. An object output from sky_get() containing
-the GitHub Skyline data for a given user in a given year.}
+\item{data}{A data.frame/tibble. An object output from \code{\link{sky_get}}
+containing the GitHub contributions data for a given user in a given
+year.}
 
 \item{play}{Logical. Should the audio be played? Defaults to TRUE}
 

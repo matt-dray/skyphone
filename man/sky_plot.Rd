@@ -7,11 +7,12 @@
 sky_plot(data)
 }
 \arguments{
-\item{data}{A data.frame/tibble. An object output from sky_get() containing
-the GitHub Skyline data for a given user in a given year.}
+\item{data}{A data.frame/tibble. An object output from \code{\link{sky_get}}
+containing the GitHub contributions data for a given user in a given
+year.}
 }
 \value{
-A gg/ggplot-class object
+A gg/ggplot-class object.
 }
 \description{
 Produce a simple, opinionated plot of GitHub Skyline data showing
