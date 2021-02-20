@@ -102,10 +102,9 @@ sky_plot <- function(data) {
     ) +
     ggplot2::labs(
       title = paste0(
-        "The 2D Github Skyline of ",
-        unique(data[["user"]]),
-        " in ",
-        unique(data[["year"]])
+        unique(data[["user"]]), "'s ",
+        unique(data[["year"]]),
+        " Github Skyline"
       ),
       subtitle = "Data via skyline.github.com/",
       x = "Date", y = "Count"
