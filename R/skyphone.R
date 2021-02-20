@@ -22,12 +22,12 @@ sky_get <- function(user, year = 2020) {
   )
 
   df <- jsonlite::fromJSON(path)$contributions %>%
-    tidyr::unnest(days) %>%
+    tidyr::unnest(.data$days) %>%
     dplyr::transmute(
       user = user, year = as.integer(year),
-      week = week + 1L, day = dplyr::row_number(),
-      date = as.Date(day, origin = paste0(year - 1, "-12-31")),
-      count
+      week = .data$week + 1L, day = dplyr::row_number(),
+      date = as.Date(.data$day, origin = paste0(year - 1, "-12-31")),
+      .data$count
     )
 
   return(df)
@@ -61,7 +61,7 @@ sky_sonify <- function(data, play = TRUE, out_dir = NULL) {
 
   if (!is.null(out_dir)) {
     out_file <- paste0(
-      unique(data[["user"]]), "_skyline", unique(data[["year"]]), ".wav"
+      "skyphone_", unique(data[["user"]]), "_", unique(data[["year"]]), ".wav"
     )
     tuneR::writeWave(audio, file.path(out_dir, out_file))
 

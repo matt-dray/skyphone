@@ -71,13 +71,21 @@ sky_sonify(md, play = FALSE, out_dir = NULL)
 You can hear the output if you set `play = TRUE` and/or save the audio
 file as a .wav to the folder provided by `out_dir`.
 
+Here’s what the audio output sounds like:
+
+<html>
+<audio controls>
+<source src="https://www.rostrum.blog/output/skyphone/skyphone_matt-dray_2020.wav" type="audio/wav">
+</audio>
+</html>
+
 There’s also a simple, opinionated built-in plotting function.
 
 ``` r
 sky_plot(md)
 ```
 
-<img src="man/figures/README-example-plot-1.png" width="100%" />
+![](man/figures/README-example-plot-1.png)<!-- -->
 
 ## Thanks
 

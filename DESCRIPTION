@@ -19,6 +19,9 @@ Imports:
     ggplot2,
     jsonlite,
     magrittr,
+    rlang (>= 0.1.2),
     sonify,
     tidyr,
     tuneR
+Suggests: 
+    roxygen2
