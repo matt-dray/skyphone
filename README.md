@@ -11,6 +11,8 @@ or
 proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 [![R-CMD-check](https://github.com/matt-dray/skyphone/workflows/R-CMD-check/badge.svg)](https://github.com/matt-dray/skyphone/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/matt-dray/skyphone/badge)](https://www.codefactor.io/repository/github/matt-dray/skyphone)
+[![rostrum.blog
+post](https://img.shields.io/badge/rostrum.blog-post-008900?style=flat&labelColor=black&logo=data:image/gif;base64,R0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh+QQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/2021/02/21/skyphone/)
 <!-- badges: end -->
 
 The goal of {skyphone} is to create an audio version of a [GitHub
@@ -22,9 +24,8 @@ like a city skyline, hence the name.
 
 {skyphone} fetches the contributions data from the Skyline API and puts
 it in a nice, tidy table that you can sonify (i.e. convert to an audio
-signal) or plot.
-
-Very much in development.
+signal) or plot. You can [read more in a blog
+post](https://www.rostrum.blog/2021/02/21/skyphone/).
 
 ## Installation
 
@@ -95,17 +96,6 @@ p
 ```
 
 <img src="man/figures/README-example-plot-1.png" title="A bar chart of contributions to GitHub in 2020 by user matt-dray, which peaks in the summer months." alt="A bar chart of contributions to GitHub in 2020 by user matt-dray, which peaks in the summer months."  />
-
-There’s no reason why you couldn’t mimic the vaporwave aesthetic of
-GitHub Skyline website using [the {vapoRwave}
-package](https://github.com/moldach/vapoRwave)…
-
-``` r
-library(vapoRwave)  # install from GitHub
-p + new_retro()
-```
-
-<img src="man/figures/README-example-plot-vaporwave-1.png" title="A bar chart of contributions to GitHub in 2020 by user matt-dray, using a 'vaporwave' aesthetic for its colours and fonts." alt="A bar chart of contributions to GitHub in 2020 by user matt-dray, using a 'vaporwave' aesthetic for its colours and fonts."  />
 
 ## Thanks
 
