@@ -5,10 +5,10 @@
 
 <!-- badges: start -->
 
-[![Project Status: Concept – Minimal or no implementation has been done
-yet, or the repository is only intended to be a limited example, demo,
-or
-proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+[![Project Status: Suspended – Initial development has started, but
+there has not yet been a stable, usable release; work has been stopped
+for the time being but the author(s) intend on resuming
+work.](https://www.repostatus.org/badges/latest/suspended.svg)](https://www.repostatus.org/#suspended)
 [![R-CMD-check](https://github.com/matt-dray/skyphone/workflows/R-CMD-check/badge.svg)](https://github.com/matt-dray/skyphone/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/matt-dray/skyphone/badge)](https://www.codefactor.io/repository/github/matt-dray/skyphone)
 [![rostrum.blog
@@ -22,10 +22,15 @@ Skyline is a novelty webservice from GitHub. You input a username and
 can ‘view a 3D model of your GitHub contribution graph.’ It looks a bit
 like a city skyline, hence the name.
 
-{skyphone} fetches the contributions data from the Skyline API and puts
-it in a nice, tidy table that you can sonify (i.e. convert to an audio
-signal) or plot. You can [read more in a blog
-post](https://www.rostrum.blog/2021/02/21/skyphone/).
+{skyphone} is an exploratory package that fetches the contributions data
+from the Skyline API and puts it in a nice, tidy table that you can
+sonify (i.e. convert to an audio signal) or plot. You can [read more in
+a blog post](https://www.rostrum.blog/2021/02/21/skyphone/).
+
+*Note: The [GitHub Skyline](https://skyline.github.com/) API—on which
+{skyphone} depends—stopped responding (i.e. it 404s) soon after the
+package was created. I may fix {skyphone} in future [to work via {gh}
+instead](https://gh.r-lib.org/); feel free to contribute.*
 
 ## Installation
 
@@ -48,21 +53,22 @@ fetch my own contributions for 2020:
 library(skyphone)
 md <- sky_get("matt-dray", 2020)
 md
-#> # A tibble: 366 x 6
-#>    user       year  week   day date       count
-#>    <chr>     <int> <int> <int> <date>     <int>
-#>  1 matt-dray  2020     1     1 2020-01-01     5
-#>  2 matt-dray  2020     1     2 2020-01-02     5
-#>  3 matt-dray  2020     1     3 2020-01-03     8
-#>  4 matt-dray  2020     1     4 2020-01-04     3
-#>  5 matt-dray  2020     2     5 2020-01-05     0
-#>  6 matt-dray  2020     2     6 2020-01-06     7
-#>  7 matt-dray  2020     2     7 2020-01-07    10
-#>  8 matt-dray  2020     2     8 2020-01-08     2
-#>  9 matt-dray  2020     2     9 2020-01-09     6
-#> 10 matt-dray  2020     2    10 2020-01-10     0
-#> # … with 356 more rows
 ```
+
+    #> # A tibble: 366 x 6
+    #>    user       year  week   day date       count
+    #>    <chr>     <int> <int> <int> <date>     <int>
+    #>  1 matt-dray  2020     1     1 2020-01-01     5
+    #>  2 matt-dray  2020     1     2 2020-01-02     5
+    #>  3 matt-dray  2020     1     3 2020-01-03     8
+    #>  4 matt-dray  2020     1     4 2020-01-04     3
+    #>  5 matt-dray  2020     2     5 2020-01-05     0
+    #>  6 matt-dray  2020     2     6 2020-01-06     7
+    #>  7 matt-dray  2020     2     7 2020-01-07    10
+    #>  8 matt-dray  2020     2     8 2020-01-08     2
+    #>  9 matt-dray  2020     2     9 2020-01-09     6
+    #> 10 matt-dray  2020     2    10 2020-01-10     0
+    #> # … with 356 more rows
 
 You can hear contributions over time by passing the output from
 `sky_get()` to `sky_sonify()`. This function uses the {sonify} package
@@ -70,15 +76,16 @@ to convert the data to audio format, where peaks are higher pitched.
 
 ``` r
 sky_sonify(md, play = FALSE, out_dir = NULL)
-#> 
-#> WaveMC Object
-#>  Number of Samples:      220500
-#>  Duration (seconds):     5
-#>  Samplingrate (Hertz):   44100
-#>  Number of channels:     2
-#>  PCM (integer format):   TRUE
-#>  Bit (8/16/24/32/64):    16
 ```
+
+    #> 
+    #> WaveMC Object
+    #>  Number of Samples:      220500
+    #>  Duration (seconds):     5
+    #>  Samplingrate (Hertz):   44100
+    #>  Number of channels:     2
+    #>  PCM (integer format):   TRUE
+    #>  Bit (8/16/24/32/64):    16
 
 You’ll hear the output from your speakers if you set `play = TRUE`
 and/or save the audio file as a .wav to the folder provided by
@@ -95,7 +102,11 @@ p <- sky_plot(md)
 p
 ```
 
-<img src="man/figures/README-example-plot-1.png" title="A bar chart of contributions to GitHub in 2020 by user matt-dray, which peaks in the summer months." alt="A bar chart of contributions to GitHub in 2020 by user matt-dray, which peaks in the summer months."  />
+<div class="figure">
+
+<img src="https://raw.githubusercontent.com/matt-dray/rostrum-blog/master/static/post/2021-02-20-skyphone_files/figure-html/plot-1.png" alt="A bar chart of contributions to GitHub in 2020 by user matt-dray, which peaks in the summer months." width="100%"/>
+
+</div>
 
 ## Thanks
 

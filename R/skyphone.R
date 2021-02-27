@@ -18,6 +18,14 @@
 #' @examples \dontrun{ sky_get(user = "matt-dray", year = 2020) }
 sky_get <- function(user, year = 2020) {
 
+  if (class(user) != "character") {
+    stop("Argument 'user' must be a character string.")
+  }
+
+  if (class(year) != "numeric") {
+    stop("Argument 'year' must be numeric.")
+  }
+
   path <- paste0(
     "https://skyline.github.com/api/contributions?",
     "username=", user, "&year=", year
@@ -58,6 +66,18 @@ sky_get <- function(user, year = 2020) {
 #'     }
 sky_sonify <- function(data, play = TRUE, out_dir = NULL) {
 
+  if (class(any(data != "data.frame"))) {
+    stop("Argument 'data' should be a data.frame output from sky_get().")
+  }
+
+  if (class(play != "logical")) {
+    stop("Argument 'play' should be TRUE or FALSE.")
+  }
+
+  if (class(out_dir != "character")) {
+    stop("Argument 'out_dir' must be a character string.")
+  }
+
   audio <- sonify::sonify(
     data[["day"]], data[["count"]],
     play = play
@@ -95,6 +115,10 @@ sky_sonify <- function(data, play = TRUE, out_dir = NULL) {
 #'     sky_plot(d)
 #'     }
 sky_plot <- function(data) {
+
+  if (class(any(data != "data.frame"))) {
+    stop("Argument 'data' should be a data.frame output from sky_get().")
+  }
 
   ggplot2::ggplot() +
     ggplot2::geom_col(
